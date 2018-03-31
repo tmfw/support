@@ -12,7 +12,6 @@
     "require": {
         "php": ">=5.6.4",
         "tmfw/base" : "0.6.*",
-        "tmfw/template" : "0.6.*"
     },
     "autoload": {
         "psr-4": {
