@@ -13,15 +13,7 @@
  * For more details about redistribution and reselling, contact to provided author details.
  */
 
-$router->group(['namespace' => 'TMFW\Foundation\Base'], function ($route) {
-
-    //routing
-    $route->get('/email/templates', ['as' => 'email.event.templates', 'uses' => 'Email\Event\Template\Controller@index']);
-    $route->get('/email/template/{event}/edit', ['as' => 'email.event.template.edit', 'uses' => 'Email\Event\Template\Controller@edit']);
-    $route->put('/email/template/{event}/update', ['as' => 'email.event.template.update', 'uses' => 'Email\Event\Template\Controller@update']);
-
-});
-
+//Load assets for template
 $router->group(['prefix' => 'template/assets'], function ($route){
     $route->get('/{path}', ['as' => 'builtin.template.assets', 'uses' => function(\Illuminate\Http\Request $request){
         try{

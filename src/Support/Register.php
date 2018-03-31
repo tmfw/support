@@ -4,7 +4,7 @@ namespace TMFW\Support;
 
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Routing\Router;
-use TMFW\Support\Filters\Email\EventTemplate;
+use MCMIS\Support\Filters\Sample\DataManipulation;
 
 class Register
 {
@@ -26,18 +26,19 @@ class Register
     }
 
     protected function registerFilters(){
-        $this->filterEmailTemplate();
+        $this->filterDataManipulation();
     }
 
-    protected function filterEmailTemplate(){
-        $this->app->bind('GetEmailTemplate', function ($app) {
-            return new EventTemplate();
+    protected function filterDataManipulation(){
+        $this->app->bind('GetDataManipulator', function ($app) {
+            return new DataManipulation();
         });
 
-        $this->app->bind('TMFW\Contracts\Filters\EmailTemplate', 'TMFW\Support\Filters\Email\EventTemplate');
+        $this->app->bind('TMFW\Contracts\Filters\DataManipulator', 'TMFW\Support\Filters\Sample\DataManipulation');
     }
 
     protected function mapWebRoutes(Router $router){
+        /* Inject routes dynamically */
         $router->group(['middleware' => 'web'], function($router){
             require_once __DIR__.'/routes.php';
         });
